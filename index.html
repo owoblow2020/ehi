@@ -135,6 +135,8 @@
               </div>
             </form>
           </div>
+          <!-- This is where the response message will be displayed -->
+         <div id="responseMessage"></div>
          <div class="fundraise_section">
             <div class="fundraise_section_main">
                <div class="row">
@@ -516,7 +518,33 @@
       <script src="js/custom.js"></script>
       <!-- javascript --> 
       <script src="js/owl.carousel.js"></script>
-      
+      <script>
+         $(document).ready(function() {
+             $('#donationForm').submit(function(event) {
+                 // Prevent the default form submission behavior
+                 event.preventDefault();
+     
+                 // Serialize the form data
+                 var formData = $(this).serialize();
+     
+                 // Send an AJAX request to send_email.php
+                 $.ajax({
+                     type: 'POST',
+                     url: 'send_email.php',
+                     data: formData,
+                     success: function(response) {
+                         // Display the response message on the page
+                         $('#responseMessage').html(response);
+                     },
+                     error: function() {
+                         // Display an error message if the request fails
+                         $('#responseMessage').html('Sorry, there was an error submitting your donation form. Please try again later.');
+                     }
+                 });
+             });
+         });
+     </script>
+     
    </body>
 </html>
 
