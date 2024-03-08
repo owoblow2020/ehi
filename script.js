@@ -1,36 +1,28 @@
-
-const form = document.getElementById('donation-form');
-
-form.addEventListener('submit', (e) => {
-    // ... (the rest of the JavaScript code)
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const data = {};
-
-    for (const [key, value] of formData.entries()) {
-        data[key] = value;
-    }
-
-    fetch('send_email.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Email sent successfully!');
-            form.reset();
-        } else {
-            alert('Failed to send email. Please try again later.');
+$(document).ready(function(){
+    $('#sendButton').on('click', function(){
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var phone = $('#phone').val();
+        
+        // Check if all fields are filled
+        if (name !== '' && email !== '' && phone !== '') {
+            $.ajax({
+                type: 'POST',
+                url: 'send_email.php',
+                data: {
+                    name: name,
+                    email: email,
+                    phone: phone
+                },
+                success: function(response){
+                    // Handle success, like showing a success message or redirecting
+                    console.log(response); // Log the response for debugging
+                },
+                error: function(xhr, status, error){
+                    // Handle error, like showing an error message
+                    console.error(xhr.responseText); // Log the error for debugging
+                }
+            });
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again later.');
     });
 });

@@ -123,12 +123,18 @@
          </div>
          <div class="donation_box">
             <h4 class="donation_taital">Contact For Donation</h4>
-            <div class="mail_box">
-               <input type="" class="mail_text" placeholder="Your Name" name="Your Name">
-               <input type="" class="mail_text" placeholder="Email" name="Email">
-               <input type="" class="mail_text" placeholder="Phone" name="Phone">
-            </div>
-            <div class="send_bt"><input type="submit" value="Send"></div> <br>
+            <form id="donationForm" method="post">
+              <div class="mail_box">
+                <input type="text" class="mail_text" placeholder="Your Name" name="name" id="name" required>
+                <input type="email" class="mail_text" placeholder="Email" name="email" id="email" required>
+                <input type="tel" class="mail_text" placeholder="Phone" name="phone" id="phone">
+              </div>
+              <br>
+              <div class="send_bt">
+                <input type="submit" value="Send">
+              </div>
+            </form>
+          </div>
          <div class="fundraise_section">
             <div class="fundraise_section_main">
                <div class="row">
@@ -137,7 +143,7 @@
                         <div class="icon_1"><img src="images/icon-1.png"></div>
                         <h4 class="volunteer_text">VOLUNTEERS</h4>
                         <p class="lorem_text">Lorem Ipsum generators on the Internet tend to repeat predefined</p>
-                        <div class="join_bt"><a href="#">Join Now</a></div>
+                       <div class="join_bt"><a href="#">Join Now</a></div>
                      </div>
                   </div>
                   <div class="col-lg-4">
@@ -499,6 +505,7 @@
       </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
@@ -509,7 +516,33 @@
       <script src="js/custom.js"></script>
       <!-- javascript --> 
       <script src="js/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+      
+      <script>
+         $(document).ready(function() {
+           $('#donationForm').submit(function(e) {
+             e.preventDefault(); // Prevent the default form submission
+       
+             // Get form data
+             var formData = $(this).serialize();
+       
+             // Send the form data using AJAX
+             $.ajax({
+               type: 'POST',
+               url: 'send_email.php',
+               data: formData,
+               success: function(response) {
+                 // Handle success response here if needed
+                 alert('Form submitted successfully!');
+                 // You can optionally redirect the user to another page here
+               },
+               error: function(xhr, status, error) {
+                 // Handle error response here if needed
+                 console.error(xhr.responseText);
+               }
+             });
+           });
+         });
+       </script>
    </body>
 </html>
 
