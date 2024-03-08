@@ -1,26 +1,30 @@
 <?php
-if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['phone'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-    
-    // Change the recipient email address as per your requirement
-    $to = 'owolabi.upload@gmail.com';
-    $subject = 'New Donation Request';
+
+    // Set up the recipient email address
+    $to = "owolabi.upload@gmail.com";
+
+    // Set up the email subject
+    $subject = "New Donation Contact";
+
+    // Compose the email message
     $message = "Name: $name\n";
     $message .= "Email: $email\n";
     $message .= "Phone: $phone\n";
-    
-    // Additional headers
-    $headers = "From: $name <$email>";
-    
-    // Send email
-    if(mail($to, $subject, $message, $headers)) {
-        echo 'Email sent successfully.';
+
+    // Set up the email headers
+    $headers = "From: $email" . "\r\n" .
+        "Reply-To: $email" . "\r\n" .
+        "X-Mailer: PHP/" . phpversion();
+
+    // Send the email
+    if (mail($to, $subject, $message, $headers)) {
+        echo "Thank you for your donation contact. We will get back to you shortly.";
     } else {
-        echo 'Error: Unable to send email.';
+        echo "Oops! Something went wrong. Please try again later.";
     }
-} else {
-    echo 'Error: Invalid request.';
 }
 ?>

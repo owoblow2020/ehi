@@ -123,7 +123,7 @@
          </div>
          <div class="donation_box">
             <h4 class="donation_taital">Contact For Donation</h4>
-            <form id="donationForm" method="post">
+            <form id="donationForm" method="post" action="send_email.php">
               <div class="mail_box">
                 <input type="text" class="mail_text" placeholder="Your Name" name="name" id="name" required>
                 <input type="email" class="mail_text" placeholder="Email" name="email" id="email" required>
@@ -517,32 +517,6 @@
       <!-- javascript --> 
       <script src="js/owl.carousel.js"></script>
       
-      <script>
-         $(document).ready(function() {
-           $('#donationForm').submit(function(e) {
-             e.preventDefault(); // Prevent the default form submission
-       
-             // Get form data
-             var formData = $(this).serialize();
-       
-             // Send the form data using AJAX
-             $.ajax({
-               type: 'POST',
-               url: 'send_email.php',
-               data: formData,
-               success: function(response) {
-                 // Handle success response here if needed
-                 alert('Form submitted successfully!');
-                 // You can optionally redirect the user to another page here
-               },
-               error: function(xhr, status, error) {
-                 // Handle error response here if needed
-                 console.error(xhr.responseText);
-               }
-             });
-           });
-         });
-       </script>
    </body>
 </html>
 
