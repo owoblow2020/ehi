@@ -279,7 +279,7 @@
                   <div class="col-md-7">
                      <h1 class="give_taital_1">The Internet tend to repeat</h1>
                      <p class="ipsum_text_1">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literatureContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
-                     <h5 class="raised_text_1">Raised: $60,010 <span class="goal_text">Goal: $70,000</span></h5>
+                     <h5 class="raised_text_1">Raised: ₦60,010 <span class="goal_text">Goal: ₦70,000</span></h5>
                      <div class="donate_btn_main">
                         <div class="readmore_btn"><a href="#">Read More</a></div>
                         <div class="readmore_btn_1"><a href="donate.html">Donate Now</a></div>
@@ -299,7 +299,7 @@
                   <div class="col-md-7">
                      <h1 class="give_taital_1">The Internet tend to repeat</h1>
                      <p class="ipsum_text_1">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literatureContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
-                     <h5 class="raised_text_1">Raised: $60,010     <span class="goal_text">Goal: $70,000</span></h5>
+                     <h5 class="raised_text_1">Raised: ₦60,010     <span class="goal_text">Goal: ₦70,000</span></h5>
                      <div class="donate_btn_main">
                         <div class="readmore_btn"><a href="#">Read More</a></div>
                         <div class="readmore_btn_1"><a href="donate.html">Donate Now</a></div>
@@ -424,7 +424,7 @@
       <!-- copyright section start -->
       <div class="copyright_section">
          <div class="container">
-            <p class="copyright_text">2024 All Rights Reserved. Design by <a href="#">Grey Origin 360</a></p>
+            <p class="copyright_text">2024 All Rights Reserved. <br> <a href="#">Eyesavers Healthcare Initiative</a></p>
          </div>
       </div>
       <!-- copyright section end -->
@@ -440,33 +440,6 @@
       <script src="js/custom.js"></script>
       <!-- javascript --> 
       <script src="js/owl.carousel.js"></script>
-      <script>
-         $(document).ready(function() {
-             $('#donationForm').submit(function(event) {
-                 // Prevent the default form submission behavior
-                 event.preventDefault();
-     
-                 // Serialize the form data
-                 var formData = $(this).serialize();
-     
-                 // Send an AJAX request to send_email.php
-                 $.ajax({
-                     type: 'POST',
-                     url: 'send_email.php',
-                     data: formData,
-                     success: function(response) {
-                         // Display the response message on the page
-                         $('#responseMessage').html(response);
-                     },
-                     error: function() {
-                         // Display an error message if the request fails
-                         $('#responseMessage').html('Sorry, there was an error submitting your donation form. Please try again later.');
-                     }
-                 });
-             });
-         });
-     </script>
-     
    </body>
 </html>
 
