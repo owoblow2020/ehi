@@ -23,7 +23,7 @@
         margin: 0px 0px;
     }
     .menu-area-main {
-        height: 128px;
+        height: 100%;
         overflow-y: auto;
     }
     .megamenu>.row [class*="col-"] {
