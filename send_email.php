@@ -1,20 +1,31 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $message = $_POST['message'];
+// Retrieve form data
+$name = $_POST['name'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
 
-    // Email information
-    $to = "owo@gmail.com";
-    $subject = "New Contact Message";
-    $body = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
+// Set the recipient email address
+$to = 'owolabi.upload@gmail.com';
 
-    // Send email
-    if (mail($to, $subject, $body)) {
-        echo "<script>alert('Your message has been sent successfully.');</script>";
-    } else {
-        echo "<script>alert('Sorry, there was an error sending your message. Please try again later.');</script>";
-    }
+// Set the subject of the email
+$subject = 'New Donation Form Submission';
+
+// Construct the message body
+$message = "Name: $name\n";
+$message .= "Email: $email\n";
+$message .= "Phone: $phone\n";
+
+// Set additional headers
+$headers = "From: $email\r\n";
+$headers .= "Reply-To: $email\r\n";
+
+// Send the email
+$mailSent = mail($to, $subject, $message, $headers);
+
+// Check if the email was sent successfully
+if ($mailSent) {
+    echo "Thank you for your donation. We will get back to you soon!";
+} else {
+    echo "Sorry, there was an error sending your donation form. Please try again later.";
 }
 ?>
